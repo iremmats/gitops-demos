@@ -1,0 +1,114 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: aks-yellow
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: nginx
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  - namespace: kube-system
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  sourceRepos:
+  - git@github.com:iremmats/cloud-native-7.git
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-yellow-nginx
+  namespace: argocd
+spec:
+  destination:
+    namespace: nginx
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  project: aks-yellow
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: clusters/yellow/nginx
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+  ignoreDifferences:
+  - group: ''
+    kind: Service
+    jsonPointers:
+    - /spec/clusterIP
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-yellow-sealed-secrets
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  project: aks-yellow
+  source:
+    path: clusters/yellow/sealed-secrets
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-yellow-external-dns
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  project: aks-yellow
+  source:
+    path: clusters/yellow/external-dns
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-yellow-requirements
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  project: aks-yellow
+  source:
+    path: clusters/yellow/requirements
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-yellow-cert-manager
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  project: aks-yellow
+  source:
+    path: clusters/yellow/cert-manager
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true

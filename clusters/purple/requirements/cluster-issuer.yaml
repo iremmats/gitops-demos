@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: mats@iremark.se
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-prod-account-key
+    solvers:
+    - dns01:
+        azuredns:
+          clientID: a930c629-c42b-4a5c-9ba6-a2bccb8a3fae
+          clientSecretSecretRef:
+            name: azuredns
+            key: client_secret
+          # Azure subscription Id
+          subscriptionID: dddc00bc-a73c-41a0-b70a-57ebed066f1e
+          tenantID: 99707b11-eb3c-4bc7-9e08-67caccb81107
+          # ResourceGroup name where dns zone is provisioned
+          resourceGroupName: group-dns-matsiremarkcom
+          hostedZoneName: matsiremark.com

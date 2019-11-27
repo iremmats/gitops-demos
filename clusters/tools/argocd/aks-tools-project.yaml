@@ -1,0 +1,114 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: aks-tools
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: nginx
+    server: https://kubernetes.default.svc
+  - namespace: kube-system
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - git@github.com:iremmats/cloud-native-7.git
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-tools-nginx
+  namespace: argocd
+spec:
+  destination:
+    namespace: nginx
+    server: https://kubernetes.default.svc
+  project: aks-tools
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: clusters/tools/nginx
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+  ignoreDifferences:
+  - group: ''
+    kind: Service
+    jsonPointers:
+    - /spec/clusterIP
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-tools-sealed-secrets
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: aks-tools
+  source:
+    path: clusters/tools/sealed-secrets
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-tools-external-dns
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: aks-tools
+  source:
+    path: clusters/tools/external-dns
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-tools-requirements
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: aks-tools
+  source:
+    path: clusters/tools/requirements
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-tools-cert-manager
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: aks-tools
+  source:
+    path: clusters/tools/cert-manager
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: 02-apps
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: app1
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  - namespace: app2
+    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+  sourceRepos:
+  - git@github.com:iremmats/cloud-native-7.git

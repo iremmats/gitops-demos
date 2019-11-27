@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - git@github.com:iremmats/cloud-native-7.git
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: app-of-apps
+  source:
+    path: 03/apps-and-projects
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+
+
+### THE SPELLING ABOVE WAS INTENTIONAL TO SHOW DEBUGGING FEATURES

@@ -1,0 +1,114 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: aks-purple
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: nginx
+    server: https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443
+  - namespace: kube-system
+    server: https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443
+  sourceRepos:
+  - git@github.com:iremmats/cloud-native-7.git
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-purple-nginx
+  namespace: argocd
+spec:
+  destination:
+    namespace: nginx
+    server: https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443
+  project: aks-purple
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: clusters/purple/nginx
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+  ignoreDifferences:
+  - group: ''
+    kind: Service
+    jsonPointers:
+    - /spec/clusterIP
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-purple-sealed-secrets
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443
+  project: aks-purple
+  source:
+    path: clusters/purple/sealed-secrets
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-purple-external-dns
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443
+  project: aks-purple
+  source:
+    path: clusters/purple/external-dns
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-purple-requirements
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443
+  project: aks-purple
+  source:
+    path: clusters/purple/requirements
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aks-purple-cert-manager
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443
+  project: aks-purple
+  source:
+    path: clusters/purple/cert-manager
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
