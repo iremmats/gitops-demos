@@ -41,17 +41,9 @@ argocd:
 restart-argocd:
 	kubectl delete pod -l app.kubernetes.io/name=argocd-server --context aks-tools-admin -n argocd
 
-pf-argocd:
-	kubectl port-forward svc/argocd-server 8080:80 --context aks-tools-admin -n argocd
-
 install-argocd: sealed-secrets argocd restart-argocd
 
 ##-----
-
-# nginx:
-# 	kubectl create ns nginx --dry-run | kubectl apply --context aks-tools-admin  - 
-# 	kubectl create ns nginx --dry-run | kubectl apply --context aks-purple-admin -
-# 	kubectl create ns nginx --dry-run | kubectl apply --context aks-yellow-admin -
 
 cert-manager:
 	kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.11/deploy/manifests/00-crds.yaml --context aks-tools-admin
@@ -68,17 +60,17 @@ packages: cert-manager projects
 ingress: 
 	kubectl apply -f clusters/tools/argocd/ingress.yaml
 
+##--- Wait for the cli to be able to connect to ArgoCd
+
 login:
 	argocd login argocd.matsiremark.com --insecure
 
-## Doesnt work!
-cluster222s:
-	kubectl apply -f clusters/tools/argocd/aks-yellow-project.yaml --context aks-tools-admin -n argocd
-	kubectl apply -f clusters/tools/argocd/aks-purple-project.yaml --context aks-tools-admin -n argocd
+## Doesnt work when its named clusters?!?!?!
+clusters2:
 	argocd cluster add aks-purple-admin
 	argocd cluster add aks-yellow-admin
-
-argocd-login: argocd login argocd.matsiremark.com
+	kubectl apply -f clusters/tools/argocd/aks-yellow-project.yaml --context aks-tools-admin -n argocd
+	kubectl apply -f clusters/tools/argocd/aks-purple-project.yaml --context aks-tools-admin -n argocd
 
 ##----
 
