@@ -133,9 +133,18 @@ clusters2:
 	argocd app delete demoapp2-test
 	argocd app delete demoapp2-qa
 	argocd app delete demoapp2-prod
+	argocd app delete demoapp3-test
+	argocd app delete demoapp3-qa
+	argocd app delete demoapp4-test
 	argocd app delete app-of-apps
 
 05-delete-proj:
-	argocd proj delete demoapp
-	argocd proj delete demoapp2
 	argocd proj delete app-of-apps
+
+#----
+
+show-purple:
+	kubectl get pods --all-namespaces --context aks-purple-admin
+
+show-yellow:
+	kubectl get pods --all-namespaces --context aks-yellow-admin
