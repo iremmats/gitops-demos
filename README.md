@@ -12,6 +12,11 @@ Demo during meetup Cloud Native 7 in Gothenburg
 - Bitnami kube.libsonnet: https://github.com/bitnami-labs/kube-libsonnet
 - Jsonnet styleguide: https://github.com/databricks/jsonnet-style-guide
 
+- Kubecon videos
+  -  ArgoCD workshop: https://www.youtube.com/watch?v=r50tRQjisxw​
+  -  Reddit: https://www.youtube.com/watch?v=WTbIBqNcjoQ​
+  -  Cern (helm and Flux helm-operator): https://www.youtube.com/watch?v=g9FQxzK9E_M
+
 ## Steps to replicate
 
 ### Create three clusters using terraform.
