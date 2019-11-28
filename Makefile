@@ -90,7 +90,7 @@ clusters2:
 #-----
 
 02-app:
-	kubectl apply -f 02/app-of-apps/
+	kubectl apply -f 02/app-of-apps/ --context aks-tools-admin
 
 02-delete-apps:
 	argocd app delete app1
@@ -104,7 +104,7 @@ clusters2:
 #-----
 
 03-app:
-	kubectl apply -f 03/app-of-apps/
+	kubectl apply -f 03/app-of-apps/ --context aks-tools-admin
 
 03-delete-apps:
 	argocd app delete app1
@@ -118,7 +118,7 @@ clusters2:
 #----
 
 05-app:
-	kubectl apply -f 05/app-of-apps.yaml
+	kubectl apply -f 05/app-of-apps.yaml --context aks-tools-admin
 
 05-delete-purple:
 	kubectl delete ns -l demo=demo --context aks-purple-admin
