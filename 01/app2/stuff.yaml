@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configmap6
+  name: configmap7
 data:
   allowed: '"false"'
   enemies: aliens2

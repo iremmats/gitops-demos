@@ -4,7 +4,7 @@ metadata:
   name: configmap
 data:
   allowed: '"true"'
-  enemies: aliens
+  enemies: aliens2
   lives: "8"
 ---
 apiVersion: v1
