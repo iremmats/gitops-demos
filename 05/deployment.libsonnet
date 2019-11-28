@@ -1,4 +1,4 @@
-local kube = import '../../libs/kube.libsonnet';
+local kube = import '../libs/kube.libsonnet';
 
 {
     Deploy(p) : {
