@@ -9,6 +9,8 @@ Demo during meetup Cloud Native 7 in Gothenburg
 - GitHub code: https://github.com/iremmats/azure-devops-demo
 - GitHub pipelines: https://github.com/iremmats/azure-devops-templates
 - Sealed Secrets:  https://github.com/bitnami-labs/sealed-secrets
+- Bitnami kube.libsonnet: https://github.com/bitnami-labs/kube-libsonnet
+- Jsonnet styleguide: https://github.com/databricks/jsonnet-style-guide
 
 ## Steps to replicate
 
