@@ -1,5 +1,5 @@
 {
-    docker_image_tag:'master-f61e5c9',
+    docker_image_tag:'master-262e265',
     replicas: 2,
     env: 'qa'
 }
