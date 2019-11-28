@@ -75,10 +75,10 @@ clusters2:
 ##----
 
 01-project:
-	kubectl apply -f 01/apps-and-projects/project.yaml
+	kubectl apply -f 01/apps-and-projects/project.yaml --context aks-tools-admin
 
 01-apps:
-	kubectl apply -f 01/apps-and-projects/apps.yaml
+	kubectl apply -f 01/apps-and-projects/apps.yaml --context aks-tools-admin
 
 01-delete-apps:
 	argocd app delete app1
