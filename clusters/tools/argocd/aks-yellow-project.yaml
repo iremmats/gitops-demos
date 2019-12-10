@@ -9,9 +9,9 @@ spec:
     kind: '*'
   destinations:
   - namespace: nginx
-    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+    server: https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443
   - namespace: kube-system
-    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+    server: https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443
   sourceRepos:
   - git@github.com:iremmats/cloud-native-7.git
 ---
@@ -23,7 +23,7 @@ metadata:
 spec:
   destination:
     namespace: nginx
-    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+    server: https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443
   project: aks-yellow
   source:
     helm:
@@ -49,7 +49,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+    server: https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443
   project: aks-yellow
   source:
     path: clusters/yellow/sealed-secrets
@@ -67,7 +67,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+    server: https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443
   project: aks-yellow
   source:
     path: clusters/yellow/external-dns
@@ -85,7 +85,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+    server: https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443
   project: aks-yellow
   source:
     path: clusters/yellow/requirements
@@ -103,7 +103,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://yellow-10502239.hcp.westeurope.azmk8s.io:443
+    server: https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443
   project: aks-yellow
   source:
     path: clusters/yellow/cert-manager

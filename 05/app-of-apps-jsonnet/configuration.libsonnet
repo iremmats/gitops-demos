@@ -2,8 +2,8 @@ local kube = import '../../libs/kube.libsonnet';
 local argocd = import '../../libs/argocd.libsonnet';
 
 local repo = 'git@github.com:iremmats/cloud-native-7.git';
-local yellow = 'https://yellow-10502239.hcp.westeurope.azmk8s.io:443';
-local purple = 'https://purple-d2c0d4f4.hcp.westeurope.azmk8s.io:443';
+local yellow = 'https://yellow-a2a4e2e7.hcp.westeurope.azmk8s.io:443';
+local purple = 'https://purple-80a3fc0e.hcp.westeurope.azmk8s.io:443';
 
 local defaultRepo = { spec+: { sourceRepos: [repo]}};
 local namespace = {metadata+: {namespace: 'argocd'}};
