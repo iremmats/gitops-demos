@@ -5,7 +5,7 @@ metadata:
 data:
   allowed: '"true"'
   enemies: aliens
-  lives: "3"
+  lives: "7"
 ---
 apiVersion: v1
 kind: Namespace
