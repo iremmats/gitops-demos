@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configmap7
+  name: configmap8
 data:
   allowed: '"false"'
   enemies: aliens2
-  lives: "3"
+  lives: "4"
 ---
 apiVersion: v1
 kind: Namespace
