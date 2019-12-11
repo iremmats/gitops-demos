@@ -10,7 +10,7 @@ local namespace = {metadata+: {namespace: 'argocd'}};
 
 
 ### Change this to change placement of all applications.
-local getActiveServer() = purple;
+local getActiveServer() = yellow;
 
 
 local destinations = [
