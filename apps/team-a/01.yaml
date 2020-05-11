@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 01-test
+  namespace: argocd
+spec:
+  destination:
+    namespace: team-a-01-test
+    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+  project: team-a-apps
+  source:
+    path: apps/team-a/01/test
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+---
+kind: Application
+metadata:
+  name: 01-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: team-a-01-prod
+    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+  project: team-a-apps
+  source:
+    path: apps/team-a/01/prod
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true

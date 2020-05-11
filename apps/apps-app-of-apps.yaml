@@ -1,0 +1,37 @@
+---
+## Makes this application manage itself.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps-app-of-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: app-of-apps
+  source:
+    path: clusters/
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: team-a-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: app-of-apps
+  source:
+    path: apps/team-a
+    repoURL: git@github.com:iremmats/cloud-native-7.git
+    targetRevision: HEAD
+  # syncPolicy:
+  #   automated:
+  #     prune: true

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap8
+data:
+  allowed: '"false"'
+  enemies: aliens2
+  lives: "4"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  team-a-01-app2
+  labels:
+    anything: goes
