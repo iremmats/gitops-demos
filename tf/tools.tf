@@ -8,20 +8,22 @@ resource "azurerm_kubernetes_cluster" "tools" {
   location            = azurerm_resource_group.tools.location
   resource_group_name = azurerm_resource_group.tools.name
   dns_prefix          = "tols"
-  kubernetes_version  = "1.14.8"
+  kubernetes_version  = "1.16.7"
 
-  agent_pool_profile {
+  default_node_pool {
     name            = "extra"
-    count           = 2
-    vm_size         = "Standard_D2s_v3"
-    os_type         = "Linux"
+    min_count       = 1
+    max_count       = 10
+    node_count      = 2
+    enable_auto_scaling = true
+    vm_size         = "Standard_D4s_v3"
     os_disk_size_gb = 30
     max_pods        = 30
   }
 
   service_principal {
-    client_id     = "${var.client_id}"
-    client_secret = "${var.client_secret}"
+    client_id     = var.client_id
+    client_secret = var.client_secret
   }
 
   tags = {
