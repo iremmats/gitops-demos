@@ -3,3 +3,5 @@ nginx-ingress:
     ingressClass: nginx-external
     publishService:
       enabled: true
+    extraArgs:
+      enable-ssl-passthrough: ""
