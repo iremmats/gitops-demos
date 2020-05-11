@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: app-of-apps
   source:
-    path: clusters/
+    path: apps/
     repoURL: git@github.com:iremmats/cloud-native-7.git
     targetRevision: HEAD
   syncPolicy:
