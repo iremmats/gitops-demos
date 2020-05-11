@@ -12,6 +12,9 @@ data:
     - name: Stable
       type: helm
       url: https://kubernetes-charts.storage.googleapis.com
+    - name: Bitnami
+      type: helm
+      url: https://charts.bitnami.com/bitnami
 kind: ConfigMap
 metadata:
   labels:
