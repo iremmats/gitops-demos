@@ -32,10 +32,10 @@ sealed-secrets:
 	kubectl apply -f private/sealed-secret-key.yaml --context aks-purple-admin
 
 argocd:
+    kubectl apply -f libs/sealed-secrets/ --context aks-tools-admin
 	kubectl create ns argocd --dry-run -o yaml | kubectl apply --context aks-tools-admin -f -
+	kubectl apply -f clusters/tools/argocd/sealed_secrets.yaml --context aks-tools-admin
 	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml --context aks-tools-admin
-	kubectl apply -f clusters/tools/argocd/s1.yaml --context aks-tools-admin
-	kubectl apply -f clusters/tools/argocd/s2.yaml --context aks-tools-admin
 	kubectl apply -f clusters/tools/argocd/configmap.yaml --context aks-tools-admin
 
 restart-argocd:

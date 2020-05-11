@@ -14,7 +14,7 @@ resource "azurerm_kubernetes_cluster" "tools" {
     name            = "extra"
     min_count       = 1
     max_count       = 10
-    node_count      = 2
+    node_count      = 1
     enable_auto_scaling = true
     vm_size         = "Standard_D4s_v3"
     os_disk_size_gb = 30
