@@ -1,3 +1,5 @@
 nginx-ingress:
   controller:
     ingressClass: nginx-external
+  publishService:
+    enabled: true
