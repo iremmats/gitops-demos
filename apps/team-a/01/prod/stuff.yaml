@@ -10,6 +10,6 @@ data:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name:  team-a-01-app2
+  name:  team-a-01-prod
   labels:
     anything: goes
