@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: team-a-01
+  name: team-a-api-and-ingress
   namespace: argocd
 spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
   destinations:
-  - namespace: team-a-01-test
+  - namespace: team-a-api-and-ingress-test
     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
-  - namespace: team-a-01-prod
+  - namespace: team-a-api-and-ingress-prod
     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
   sourceRepos:
   - git@github.com:iremmats/cloud-native-7.git
@@ -18,15 +18,15 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-a-01-test
+  name: team-a-api-and-ingress-test
   namespace: argocd
 spec:
   destination:
-    namespace: team-a-01-test
+    namespace: team-a-api-and-ingress-test
     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
-  project: team-a-01
+  project: team-a-api-and-ingress
   source:
-    path: apps/team-a/01/test
+    path: apps/team-a/api-and-ingress/test
     repoURL: git@github.com:iremmats/cloud-native-7.git
     targetRevision: HEAD
   # syncPolicy:
@@ -37,15 +37,15 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-a-01-prod
+  name: team-a-api-and-ingress-prod
   namespace: argocd
 spec:
   destination:
-    namespace: team-a-01-prod
+    namespace: team-a-api-and-ingress-prod
     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
-  project: team-a-01
+  project: team-a-api-and-ingress
   source:
-    path: apps/team-a/01/prod
+    path: apps/team-a/api-and-ingress/prod
     repoURL: git@github.com:iremmats/cloud-native-7.git
     targetRevision: HEAD
   # syncPolicy:

@@ -1,0 +1,80 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: team-a-api-and-ingress
+    name: team-a-api-and-ingress
+  name: team-a-api-and-ingress
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: team-a-api-and-ingress
+        name: team-a-api-and-ingress
+    spec:
+      containers:
+      - env:
+        - name: ANOTHER_ENV_VAR
+          value: "21234567"
+        image: tutum/hello-world
+        name: team-a-api-and-ingress
+        ports:
+        - containerPort: 80
+          name: http
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx-external
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app: team-a-api-and-ingress
+    name: team-a-api-and-ingress
+  name: team-a-api-and-ingress
+spec:
+  rules:
+  - host: team-a-api-and-ingress-prod.matsiremark.com
+    http:
+      paths:
+      - backend:
+          serviceName: svc-team-a-api-and-ingress
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - team-a-api-and-ingress-prod.matsiremark.com
+    secretName: team-a-api-and-ingress-tls
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: team-a-api-and-ingress
+  name: team-a-api-and-ingress-prod
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: team-a-api-and-ingress
+    name: svc-team-a-api-and-ingress
+  name: svc-team-a-api-and-ingress
+spec:
+  ports:
+  - port: 80
+    targetPort: http
+  selector:
+    app: team-a-api-and-ingress
+    name: team-a-api-and-ingress
+  type: ClusterIP
