@@ -8,6 +8,7 @@
         tag: 'latest'
     },
     replicas: 1,
+    environment: 'test',
 
     env: {
         KEY: 'value',
