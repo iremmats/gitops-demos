@@ -2,7 +2,7 @@ external-dns:
   image:
     registry: docker.io
     repository: bitnami/external-dns
-    tag: tag: 0.7.1-debian-10-r37
+    tag: 0.7.1-debian-10-r37
     pullPolicy: IfNotPresent
   
   sources:
