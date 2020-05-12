@@ -113,7 +113,7 @@ local Container(p) = kube.Container(p.name) + envFrom(p) {
              commonMetadata(p) {
                local this = self,
 
-               target_svc: outer.service,
+               target_svc:: outer.service,
 
                metadata+: {
                  annotations+: defaultIngressAnnotations + certManagerIngressAnnotations,
@@ -144,7 +144,7 @@ local Container(p) = kube.Container(p.name) + envFrom(p) {
                },
              },
     service: kube.Service(p.name) + commonMetadata(p){
-        target_pod: outer.deployment.spec.template
+        target_pod:: outer.deployment.spec.template
   },
 
     //#horizontal auto scaling...
