@@ -3,7 +3,7 @@ data:
   repositories: |
     - sshPrivateKeySecret:
         key: sshPrivateKey
-        name: repo-gitops-demos-316249281
+        name: repo-cloud-native-7-316249281
       type: git
       url: git@github.com:iremmats/gitops-demos.git
     - name: Jetstack
