@@ -12,3 +12,5 @@ spec:
     server: https://kubernetes.default.svc
   sourceRepos:
   - git@github.com:iremmats/cloud-native-7.git
+  # orphanedResources:
+  #   warn: true
