@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: team-b-api-and-ingress
+    name: team-b-api-and-ingress
+  name: team-b-api-and-ingress
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: team-b-api-and-ingress
+      name: team-b-api-and-ingress
+  template:
+    metadata:
+      labels:
+        app: team-b-api-and-ingress
+        name: team-b-api-and-ingress
+    spec:
+      containers:
+      - env:
+        - name: ANOTHER_ENV_VAR
+          value: "21234567"
+        image: tutum/hello-world
+        name: team-b-api-and-ingress
+        ports:
+        - containerPort: 80
+          name: http
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx-external
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app: team-b-api-and-ingress
+    name: team-b-api-and-ingress
+  name: team-b-api-and-ingress
+spec:
+  rules:
+  - host: team-b-api-and-ingress-test.matsiremark.com
+    http:
+      paths:
+      - backend:
+          serviceName: svc-team-b-api-and-ingress
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - team-b-api-and-ingress-test.matsiremark.com
+    secretName: team-b-api-and-ingress-tls
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: team-b-api-and-ingress
+  name: team-b-api-and-ingress-test
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: team-b-api-and-ingress
+    name: svc-team-b-api-and-ingress
+  name: svc-team-b-api-and-ingress
+spec:
+  ports:
+  - port: 80
+    targetPort: http
+  selector:
+    app: team-b-api-and-ingress
+    name: team-b-api-and-ingress
+  type: ClusterIP
