@@ -11,7 +11,7 @@ spec:
   - namespace: argocd
     server: https://kubernetes.default.svc
   sourceRepos:
-  - git@github.com:iremmats/cloud-native-7.git
+  - git@github.com:iremmats/gitops-demos.git
 ---
 ## Makes this application manage itself.
 apiVersion: argoproj.io/v1alpha1
@@ -26,7 +26,7 @@ spec:
   project: app-of-apps
   source:
     path: clusters/
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -44,7 +44,7 @@ spec:
   project: app-of-apps
   source:
     path: clusters/yellow/
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -62,7 +62,7 @@ spec:
   project: app-of-apps
   source:
     path: clusters/purple/
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -80,7 +80,7 @@ spec:
   project: app-of-apps
   source:
     path: clusters/tools/
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:

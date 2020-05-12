@@ -11,6 +11,6 @@ spec:
   - namespace: argocd
     server: https://kubernetes.default.svc
   sourceRepos:
-  - git@github.com:iremmats/cloud-native-7.git
+  - git@github.com:iremmats/gitops-demos.git
   # orphanedResources:
   #   warn: true

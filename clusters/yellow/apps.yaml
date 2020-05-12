@@ -13,7 +13,7 @@ spec:
   - namespace: kube-system
     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
   sourceRepos:
-  - git@github.com:iremmats/cloud-native-7.git
+  - git@github.com:iremmats/gitops-demos.git
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -30,7 +30,7 @@ spec:
       valueFiles:
       - values.yaml
     path: clusters/yellow/nginx
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -53,7 +53,7 @@ spec:
   project: aks-yellow
   source:
     path: libs/sealed-secrets
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -71,7 +71,7 @@ spec:
   project: aks-yellow
   source:
     path: clusters/yellow/external-dns
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -89,7 +89,7 @@ spec:
   project: aks-yellow
   source:
     path: clusters/yellow/requirements
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -107,7 +107,7 @@ spec:
   project: aks-yellow
   source:
     path: clusters/yellow/cert-manager
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:

@@ -15,7 +15,7 @@ spec:
   - namespace: argocd
     server: https://kubernetes.default.svc
   sourceRepos:
-  - git@github.com:iremmats/cloud-native-7.git
+  - git@github.com:iremmats/gitops-demos.git
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -32,7 +32,7 @@ spec:
       valueFiles:
       - values.yaml
     path: clusters/tools/nginx
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -55,7 +55,7 @@ spec:
   project: aks-tools
   source:
     path: libs/sealed-secrets
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -73,7 +73,7 @@ spec:
   project: aks-tools
   source:
     path: clusters/tools/external-dns
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -91,7 +91,7 @@ spec:
   project: aks-tools
   source:
     path: clusters/tools/requirements
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -109,7 +109,7 @@ spec:
   project: aks-tools
   source:
     path: clusters/tools/cert-manager
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -127,7 +127,7 @@ spec:
   project: aks-tools
   source:
     path: clusters/tools/argocd
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:

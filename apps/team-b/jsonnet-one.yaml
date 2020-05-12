@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: team-b-jsonnet-one
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: team-b-jsonnet-one-test
+    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+  sourceRepos:
+  - git@github.com:iremmats/gitops-demos.git
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: team-b-jsonnet-one-test
+  namespace: argocd
+spec:
+  destination:
+    namespace: team-b-jsonnet-one-test
+    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+  project: team-b-jsonnet-one
+  source:
+    path: apps/team-b/jsonnet-one/test
+    repoURL: git@github.com:iremmats/gitops-demos.git
+    targetRevision: HEAD
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true

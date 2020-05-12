@@ -13,7 +13,7 @@ spec:
   - namespace: team-b-api-and-ingress-prod
     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
   sourceRepos:
-  - git@github.com:iremmats/cloud-native-7.git
+  - git@github.com:iremmats/gitops-demos.git
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -27,7 +27,7 @@ spec:
   project: team-b-api-and-ingress
   source:
     path: apps/team-b/api-and-ingress/test
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   # syncPolicy:
   #   automated:
@@ -46,7 +46,7 @@ spec:
   project: team-b-api-and-ingress
   source:
     path: apps/team-b/api-and-ingress/prod
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   # syncPolicy:
   #   automated:

@@ -12,7 +12,7 @@ spec:
   project: app-of-apps
   source:
     path: apps/
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -30,7 +30,7 @@ spec:
   project: app-of-apps
   source:
     path: apps/team-a
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   # syncPolicy:
   #   automated:
@@ -48,7 +48,7 @@ spec:
   project: app-of-apps
   source:
     path: apps/team-b
-    repoURL: git@github.com:iremmats/cloud-native-7.git
+    repoURL: git@github.com:iremmats/gitops-demos.git
     targetRevision: HEAD
   # syncPolicy:
   #   automated:
