@@ -81,7 +81,7 @@ local Container(p) = kube.Container(p.name) + envFrom(p) {
 };
 
 {
-  Deploy(p): {
+  Deploy(p):: {
       local outer = self,
     namespace: if std.objectHas(p, 'namespace') then kube.Namespace(p.namespace) + commonMetadata(p) else kube.Namespace(p.team.name + '-' + p.name + '-' + p.environment) + commonMetadata(p),
     deployment: kube.Deployment(p.name) {

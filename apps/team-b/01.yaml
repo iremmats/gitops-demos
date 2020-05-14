@@ -1,54 +1,54 @@
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: team-b-01
-  namespace: argocd
-spec:
-  clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  destinations:
-  - namespace: team-b-01-test
-    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
-  - namespace: team-b-01-prod
-    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
-  sourceRepos:
-  - git@github.com:iremmats/gitops-demos.git
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: team-b-01-test
-  namespace: argocd
-spec:
-  destination:
-    namespace: team-b-01-test
-    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
-  project: team-b-01
-  source:
-    path: apps/team-b/01/test
-    repoURL: git@github.com:iremmats/gitops-demos.git
-    targetRevision: HEAD
-  # syncPolicy:
-  #   automated:
-  #     prune: true
-  #     selfHeal: true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: team-b-01-prod
-  namespace: argocd
-spec:
-  destination:
-    namespace: team-b-01-prod
-    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
-  project: team-b-01
-  source:
-    path: apps/team-b/01/prod
-    repoURL: git@github.com:iremmats/gitops-demos.git
-    targetRevision: HEAD
-  # syncPolicy:
-  #   automated:
-  #     prune: true
-  #     selfHeal: true
+# apiVersion: argoproj.io/v1alpha1
+# kind: AppProject
+# metadata:
+#   name: team-b-01
+#   namespace: argocd
+# spec:
+#   clusterResourceWhitelist:
+#   - group: '*'
+#     kind: '*'
+#   destinations:
+#   - namespace: team-b-01-test
+#     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+#   - namespace: team-b-01-prod
+#     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+#   sourceRepos:
+#   - git@github.com:iremmats/gitops-demos.git
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: team-b-01-test
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: team-b-01-test
+#     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+#   project: team-b-01
+#   source:
+#     path: apps/team-b/01/test
+#     repoURL: git@github.com:iremmats/gitops-demos.git
+#     targetRevision: HEAD
+#   # syncPolicy:
+#   #   automated:
+#   #     prune: true
+#   #     selfHeal: true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: team-b-01-prod
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: team-b-01-prod
+#     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+#   project: team-b-01
+#   source:
+#     path: apps/team-b/01/prod
+#     repoURL: git@github.com:iremmats/gitops-demos.git
+#     targetRevision: HEAD
+#   # syncPolicy:
+#   #   automated:
+#   #     prune: true
+#   #     selfHeal: true
