@@ -12,6 +12,10 @@
 #     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
 #   - namespace: team-a-01-prod
 #     server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+#   - namespace: team-a-01-test
+#     server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+#   - namespace: team-a-01-prod
+#     server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
 #   sourceRepos:
 #   - git@github.com:iremmats/gitops-demos.git
 # ---
