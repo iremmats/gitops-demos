@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.15.4
+        image: nginx:1.15.3
         ports:
         - containerPort: 80
         
@@ -79,7 +79,7 @@ spec:
       activeService: blue-green-active
       previewService: blue-green-preview
       autoPromotionEnabled: false
-      #autoPromotionSeconds: nil
+      #autoPromotionSeconds: 90
       #ScaleDownDelaySeconds: 30
       #ScaleDownDelayRevisionLimit: nil
 ---
