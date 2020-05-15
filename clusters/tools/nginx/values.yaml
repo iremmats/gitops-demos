@@ -5,3 +5,4 @@ nginx-ingress:
       enabled: true
     extraArgs:
       enable-ssl-passthrough: ""
+    replicas: 3
