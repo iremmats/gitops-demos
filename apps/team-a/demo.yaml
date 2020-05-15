@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 04-argo-rollouts-demo
+  namespace: argocd
+spec:
+  destination:
+    namespace: 04-argo-rollouts
+    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+  project: team-a-04-argo-rollouts
+  source:
+    path: apps/team-a/04-argo-rollouts/demo
+    repoURL: git@github.com:iremmats/gitops-demos.git
+    targetRevision: HEAD
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: 04-argo-rollouts
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: team-a-04-argo-rollouts
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: 04-argo-rollouts
+    server: https://yellow-bb31811d.hcp.westeurope.azmk8s.io:443
+  - namespace: 04-argo-rollouts
+    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+  sourceRepos:
+  - git@github.com:iremmats/gitops-demos.git

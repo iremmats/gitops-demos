@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 04-argo-rollouts
+  namespace: argocd
+spec:
+  destination:
+    namespace: argo-rollouts
+    server: https://kubernetes.default.svc
+  project: demos-cn8
+  source:
+    path: 04-argo-rollouts/controller/v0.6.2
+    repoURL: git@github.com:iremmats/cloud-native-8.git
+    targetRevision: HEAD
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: 04-argo-rollouts
