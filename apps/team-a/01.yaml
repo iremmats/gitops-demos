@@ -18,6 +18,8 @@ spec:
     server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
   sourceRepos:
   - git@github.com:iremmats/gitops-demos.git
+  orphanedResources:
+    warn: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
