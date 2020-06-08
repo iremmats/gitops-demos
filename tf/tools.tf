@@ -8,7 +8,7 @@ resource "azurerm_kubernetes_cluster" "tools" {
   location            = azurerm_resource_group.tools.location
   resource_group_name = azurerm_resource_group.tools.name
   dns_prefix          = "tols"
-  kubernetes_version  = "1.16.7"
+  kubernetes_version  = "1.16.9"
 
   default_node_pool {
     name            = "extra"

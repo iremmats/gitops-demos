@@ -8,7 +8,7 @@ resource "azurerm_kubernetes_cluster" "purple" {
   location            = azurerm_resource_group.purple.location
   resource_group_name = azurerm_resource_group.purple.name
   dns_prefix          = "purple"
-  kubernetes_version  = "1.16.7"
+  kubernetes_version  = "1.16.9"
 
   default_node_pool {
     name            = "extra"

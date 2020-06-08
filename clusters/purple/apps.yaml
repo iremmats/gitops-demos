@@ -9,9 +9,9 @@ spec:
     kind: '*'
   destinations:
   - namespace: nginx
-    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+    server: https://purple-2f632aec.hcp.westeurope.azmk8s.io:443
   - namespace: kube-system
-    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+    server: https://purple-2f632aec.hcp.westeurope.azmk8s.io:443
   sourceRepos:
   - git@github.com:iremmats/gitops-demos.git
 ---
@@ -23,7 +23,7 @@ metadata:
 spec:
   destination:
     namespace: nginx
-    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+    server: https://purple-2f632aec.hcp.westeurope.azmk8s.io:443
   project: aks-purple
   source:
     helm:
@@ -49,7 +49,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+    server: https://purple-2f632aec.hcp.westeurope.azmk8s.io:443
   project: aks-purple
   source:
     path: libs/sealed-secrets
@@ -67,7 +67,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+    server: https://purple-2f632aec.hcp.westeurope.azmk8s.io:443
   project: aks-purple
   source:
     path: clusters/purple/external-dns
@@ -85,7 +85,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+    server: https://purple-2f632aec.hcp.westeurope.azmk8s.io:443
   project: aks-purple
   source:
     path: clusters/purple/requirements
@@ -103,7 +103,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://purple-8e407f3c.hcp.westeurope.azmk8s.io:443
+    server: https://purple-2f632aec.hcp.westeurope.azmk8s.io:443
   project: aks-purple
   source:
     path: clusters/purple/cert-manager
